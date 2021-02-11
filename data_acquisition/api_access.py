@@ -1,9 +1,6 @@
 import json
 import requests
-import urllib
-import http
-import urllib.request
-import pandas as pd
+from tqdm import tqdm
 
 # getting all of the objects
 all_objects_request = requests.get("https://collectionapi.metmuseum.org/public/collection/v1/objects")
@@ -15,15 +12,16 @@ with open('./data/all_objects_data/all_object_IDs.json', 'w') as fi:
 
 # for each object, getting its data
 object_ids_list = all_objects['objectIDs']
+# getting only all data in object ID list.
 data = []
-for i in object_ids_list[22920:]:
+for i in tqdm(sorted(object_ids_list)):
     # getting request response for each object
     individual_object_request = requests.get(f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{i}")
     individual_object_data = individual_object_request.json()
     # saving to list to add to dataframe later
-    data.append(individual_object_data)
-    # saving request response for each object
-    with open(f'./data/individual_objects_data/data_object_id_{i}.json', 'w') as fi:
+    # data.append(individual_object_data)
+    # # saving request response for each object
+    with open(f'./data/new_individual_objects_data/data_object_id_{i}.json', 'w') as fi:
         json.dump(individual_object_data, fi)
 
     # not all items have an image.
@@ -45,21 +43,6 @@ for i in object_ids_list[22920:]:
                 no_image_items.append(i)
     else:
         no_image_items.append(i)
-
-
-
-# interim_data = pd.DataFrame(data)
-# interim_data.to_csv("./data/CSVs/data_to_id_22920.csv")
-# no_image_items_dict = {"items_no_image": no_image_items}
-# image_items_dict = {"items_image": image_items}
-# # saving no image items & image items
-# with open(f'./data/all_objects_data/all_objects_no_image_up_to_{i}.json', 'w') as fi:
-#     json.dump(no_image_items_dict, fi)
-#
-# with open(f'./data/all_objects_data/all_objects_image_up_to_{i}.json', 'w') as fi:
-#     json.dump(image_items_dict, fi)
-
-
 
 
 

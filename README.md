@@ -1,4 +1,4 @@
-# Met_Image_Classification
+# Met Image Classification
 Image classification of the art archives from the Metropolitan Museum of Art in New York.
 
 ### About the Project

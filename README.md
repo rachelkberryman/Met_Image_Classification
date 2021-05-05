@@ -24,4 +24,7 @@ You can check out the final app [here](https://met-paintings-classifier.herokuap
 The code for the app, built in Plotly Dash, is found in the folder `./app/`
 
 ### More Info
-For more information about this project, see the medium posts about it:
+For more information about this project, see the medium posts about it: 
+
+1. [End-to-End Image Recognition With Open Source Data — Part 1: Data Acquisition & Model Training](https://data4help.medium.com/end-to-end-image-recognition-with-open-source-data-part-1-data-acquisition-model-training-fe9f4be9b915?sk=6bf42693c15f57b69ef0d3bf50f70a5f)
+2. [End-to-End Image Recognition With Open Source Data — Part 2: Model Deployment with Plotly Dash and Heroku](https://data4help.medium.com/end-to-end-image-recognition-with-open-source-data-part-2-model-deployment-with-plotly-dash-and-3c8608b99faa)

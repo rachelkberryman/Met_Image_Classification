@@ -6,6 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import ImageGrid
 
+
 def load_images(path):
     # Put files into lists and return them as one list of size 4
     image_files = sorted([os.path.join(path, file)
@@ -68,7 +69,7 @@ for culture, data in cultures_dict.items():
         ax.set_xticks([])
         ax.set_yticks([])
 
-    fig.savefig(f'./data/plots/{culture}_paintings_grid_8.png', bbox_inches='tight')
+    fig.savefig(f'./data/plots/{culture}_paintings_grid.png', bbox_inches='tight')
     plt.close(fig)
 
 

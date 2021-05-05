@@ -3,6 +3,7 @@ import random
 import pickle
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from model_training.functions import *
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
@@ -105,6 +106,7 @@ test_data_gen = ImageDataGenerator(rescale=1./255)
 # setting up the generators
 training_datagen = train_data_gen.flow(train_x, train_y.values, batch_size=batch_size)
 val_datagen = test_data_gen.flow(val_x, val_y.values, batch_size=batch_size)
+
 # final holdout set, batch size is smaller to only use true data
 testing_datagen = test_data_gen.flow(test_x, test_y.values, batch_size=1, shuffle=False)
 
@@ -137,9 +139,6 @@ actuals
 
 test_y.todense()[0]
 
-
-
-
 train_actuals = [x.argmax() for x in train_y]
 # getting predictions
 train_predictions = []
@@ -159,5 +158,13 @@ output = open('./models/encoder.pkl', 'wb')
 pickle.dump(encoder, output)
 output.close()
 
-
+# plot loss during training
+fig, ax = plt.subplots(1, 1, figsize=(15, 10))
+# plot accuracy during training
+ax.set_title('Accuracy')
+ax.plot(history.history['accuracy'], label='Train Accuracy', color='dimgrey')
+ax.plot(history.history['val_accuracy'], label='Test Accuracy', color='deepskyblue')
+ax.legend()
+fig.savefig(f'./data/plots/training_plots_1.png', bbox_inches='tight')
+plt.close(fig)
 
